@@ -1,17 +1,18 @@
-# importing all functions from ui_of_app module
-from ui_of_app import *
+"""Console entry point for the Task Manager app."""
+
+from ui_of_app import add_task, view_tasks, complete_task, remove_task
+import tasks
 
 
-# Menu
 def menu():
     while True:
-        # Texts in menu
-        print('Welcome to Task Manager')
-        print('1. Add Task')
-        print('2. View Tasks')
-        print('3. Mark Task as Completed')
-        print('4. Remove Task')
-        print('5. Exit')
+        # Menu text
+        print('👋 Welcome to Task Manager')
+        print('1. ➕ Add Task')
+        print('2. 📋 View Tasks')
+        print('3. ✅ Mark Task as Completed')
+        print('4. 🗑️ Remove Task')
+        print('5. 🚪 Exit')
         # Try/except block to catch non-integer inputs
         try:
             # choice input
@@ -21,8 +22,10 @@ def menu():
                 task = input('Enter the task: ')
                 # Priority input with validation loop
                 while True:
-                    priority = input('What is importance(low, medium, high): ')
-                    if priority in ['low', 'medium', 'high']:
+                    priority = input(
+                        'What is importance (low, medium, high): '
+                    )
+                    if priority in ('low', 'medium', 'high'):
                         break
                     else:
                         print('Please enter low, medium, or high')
@@ -33,16 +36,16 @@ def menu():
                 view_tasks()
             elif choice == 3:
                 # Input index to mark task as completed
-                if tasks.tasks == []:
-                    print("No tasks available.")
+                if not tasks.tasks:
+                    print('No tasks available. ✨')
                     continue
                 index = int(input('Task number to mark as completed: ')) - 1
                 # Call complete_task function for inputting 3
                 complete_task(index)
             elif choice == 4:
                 # Input index to remove task
-                if tasks.tasks == []:
-                    print("No tasks available.")
+                if not tasks.tasks:
+                    print('No tasks available. ✨')
                     continue
                 index = int(input('Enter the task number to remove: ')) - 1
                 # Call remove_task function for inputting 4
@@ -52,10 +55,9 @@ def menu():
                 break
             else:
                 # Handle invalid integer inputs
-                print('Enter 1, 2, 3, or 4')
+                print('Enter 1, 2, 3, 4, or 5')
         except ValueError:
-            print('Enter an integer') 
-
+            print('Enter an integer')
 
 # Run the menu function if this file is executed directly
 if __name__ == '__main__':

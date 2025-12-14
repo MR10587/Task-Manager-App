@@ -2,39 +2,41 @@
 import tasks
 
 
-# Function to add a task with its priority
 def add_task(task, priority):
-    # Append task as a dictionary to the tasks list
+    """Add a task with its priority."""
     tasks.tasks.append({task: priority})
-    print(f'Task "{task}" with priority "{priority}" added.')
- 
+    print(f'✅ Task "{task}" with priority "{priority}" added.')
 
-# Function to view all tasks with their priorities
+
 def view_tasks():
-    # Iterate through tasks and print them with their priorities
-    if tasks.tasks == []:
-        print("No tasks available.")
+    """Print all tasks with their priorities and emoji badges."""
+    if not tasks.tasks:
+        print("No tasks available. ✨")
         return
-    for idx, task in enumerate(tasks.tasks, start=1):
-        for task, priority in task.items():
-            print(f"{idx}. {task}({priority} priority)")
- 
+    for idx, task_dict in enumerate(tasks.tasks, start=1):
+        for name, priority in task_dict.items():
+            if str(priority).lower() in ("high", "h", "1"):
+                badge = "🔥"
+            elif str(priority).lower() in ("medium", "m", "2"):
+                badge = "⚠️"
+            else:
+                badge = "🟢"
+            print(f"{idx}. {name} {badge} ({priority} priority)")
 
-# Function to mark a task as completed
+
 def complete_task(index):
-    # Remove task from the tasks list based on index
+    """Mark a task as completed and remove it from the list."""
     if 0 <= index < len(tasks.tasks):
-        print(f'Task {index + 1} marked as completed.')
+        print(f'✅ Task {index + 1} marked as completed.')
         tasks.tasks.pop(index)
     else:
         print("Invalid task index")
 
 
-# Function to delete task
 def remove_task(index):
-    # Remove task from the tasks list based on index
+    """Remove a task by index."""
     if 0 <= index < len(tasks.tasks):
-        print(f'Task {index + 1} removed.')
+        print(f'🗑️ Task {index + 1} removed.')
         tasks.tasks.pop(index)
     else:
         print("Invalid task index")
