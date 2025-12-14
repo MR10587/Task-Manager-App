@@ -11,3 +11,7 @@ A professional command-line task manager built with Python.
 - ✅ Professional UI with stats
 
 ## Quick Start
+
+# No external dependencies!
+# Pure Python standard library
+
