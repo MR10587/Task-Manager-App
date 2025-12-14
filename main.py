@@ -1,6 +1,7 @@
 # importing all functions from ui_of_app module
 from ui_of_app import *
 
+
 # Menu
 def menu():
     while True:
@@ -35,7 +36,7 @@ def menu():
                 if tasks.tasks == []:
                     print("No tasks available.")
                     continue
-                index = int(input('Enter the task number to mark as completed: ')) - 1
+                index = int(input('Task number to mark as completed: ')) - 1
                 # Call complete_task function for inputting 3
                 complete_task(index)
             elif choice == 4:
@@ -53,9 +54,11 @@ def menu():
                 # Handle invalid integer inputs
                 print('Enter 1, 2, 3, or 4')
         except ValueError:
-            print('Enter an integer')
-            
+            print('Enter an integer') 
+
 
 # Run the menu function if this file is executed directly
 if __name__ == '__main__':
-    print(tasks.tasks)
+    tasks.load_tasks()
+    menu()
+    tasks.save_tasks()
