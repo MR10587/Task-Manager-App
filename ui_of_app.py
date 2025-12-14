@@ -15,13 +15,12 @@ def view_tasks():
         return
     for idx, task_dict in enumerate(tasks.tasks, start=1):
         for name, priority in task_dict.items():
-            if str(priority).lower() in ("high", "h", "1"):
-                badge = "🔥"
-            elif str(priority).lower() in ("medium", "m", "2"):
-                badge = "⚠️"
-            else:
-                badge = "🟢"
-            print(f"{idx}. {name} {badge} ({priority} priority)")
+            badge = {
+                'low': '🟢',
+                'medium': '🟠',
+                'high': '🔴'
+            }.get(priority, '')
+            print(f"{idx}. {name} ({priority} {badge})")
 
 
 def complete_task(index):
